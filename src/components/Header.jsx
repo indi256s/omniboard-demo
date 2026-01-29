@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Header({ selectedTeam }) {
   const now = new Date();
   const formattedDate = now.toLocaleString('ru-RU', {
@@ -34,6 +36,13 @@ export default function Header({ selectedTeam }) {
         )}
       </div>
       <div className="flex items-center gap-4">
+        <Link 
+          to="/report" 
+          className="px-4 py-2 bg-zinc-800/50 hover:bg-zinc-700/50 border border-zinc-700/50 rounded-lg text-sm text-zinc-300 hover:text-white transition-all flex items-center gap-2"
+        >
+          <span>📊</span>
+          Monthly Report
+        </Link>
         <div className="text-right">
           <div className="text-xs text-zinc-500 font-light">Последнее обновление</div>
           <div className="text-sm mono text-zinc-400">{formattedDate}</div>
