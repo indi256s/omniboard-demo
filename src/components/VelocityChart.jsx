@@ -6,7 +6,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine,
   Cell,
 } from 'recharts';
 
@@ -65,17 +64,6 @@ export default function VelocityChart({ data }) {
             tickLine={false} 
           />
           <Tooltip content={<CustomTooltip />} />
-          <ReferenceLine 
-            y={60} 
-            stroke="#eab308" 
-            strokeDasharray="5 5" 
-            label={{ 
-              value: 'Target 60%', 
-              fill: '#eab308', 
-              fontSize: 11,
-              position: 'right'
-            }} 
-          />
           <Bar dataKey="planned" fill="#3f3f46" radius={[4, 4, 0, 0]} name="Planned" />
           <Bar dataKey="completed" radius={[4, 4, 0, 0]} name="Completed">
             {data.map((entry, index) => (
