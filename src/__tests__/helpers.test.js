@@ -8,32 +8,34 @@ import {
   velocityData,
   cycleTimeData,
   dshbData,
-  summaryData
+  summaryData,
+  getTeamData,
 } from '../data/mockData';
 
 describe('Data Helper Functions', () => {
   describe('getTeamStatus', () => {
-    it('returns "good" for velocity >= 75', () => {
-      expect(getTeamStatus(75)).toBe('good');
+    it('returns "good" for velocity >= 60', () => {
+      expect(getTeamStatus(60)).toBe('good');
       expect(getTeamStatus(100)).toBe('good');
+      expect(getTeamStatus(73)).toBe('good');
       expect(getTeamStatus(85)).toBe('good');
     });
 
-    it('returns "warning" for velocity 60-74', () => {
-      expect(getTeamStatus(60)).toBe('warning');
-      expect(getTeamStatus(74)).toBe('warning');
-      expect(getTeamStatus(67)).toBe('warning');
+    it('returns "warning" for velocity 45-59', () => {
+      expect(getTeamStatus(45)).toBe('warning');
+      expect(getTeamStatus(59)).toBe('warning');
+      expect(getTeamStatus(50)).toBe('warning');
     });
 
-    it('returns "critical" for velocity < 60', () => {
-      expect(getTeamStatus(59)).toBe('critical');
+    it('returns "critical" for velocity < 45', () => {
+      expect(getTeamStatus(44)).toBe('critical');
       expect(getTeamStatus(0)).toBe('critical');
       expect(getTeamStatus(30)).toBe('critical');
     });
 
     it('handles edge cases', () => {
-      expect(getTeamStatus(74.9)).toBe('warning');
-      expect(getTeamStatus(59.9)).toBe('critical');
+      expect(getTeamStatus(59.9)).toBe('warning');
+      expect(getTeamStatus(44.9)).toBe('critical');
     });
   });
 
@@ -60,6 +62,25 @@ describe('Data Helper Functions', () => {
     it('returns "Unknown" for invalid status', () => {
       expect(getStatusLabel('invalid')).toBe('Unknown');
       expect(getStatusLabel('')).toBe('Unknown');
+    });
+  });
+
+  describe('getTeamData', () => {
+    it('returns data for valid team keys', () => {
+      const disruptData = getTeamData('DISRUPT');
+      expect(disruptData).toBeDefined();
+      expect(disruptData.velocity).toBeDefined();
+      expect(disruptData.cycleTime).toBeDefined();
+      expect(disruptData.dshb).toBeDefined();
+    });
+
+    it('returns null for invalid team key', () => {
+      expect(getTeamData('NONEXISTENT')).toBe(null);
+    });
+
+    it('has correct sprint naming format', () => {
+      const surfData = getTeamData('SURF');
+      expect(surfData.velocity[0].sprint).toMatch(/SURF 26-\d{2}/);
     });
   });
 });
@@ -91,14 +112,15 @@ describe('Mock Data Integrity', () => {
     });
   });
 
-  describe('velocityData', () => {
-    it('has valid sprint data', () => {
+  describe('velocityData (All Teams Median)', () => {
+    it('has valid sprint data with MEDIAN naming', () => {
       expect(velocityData.length).toBeGreaterThan(0);
       velocityData.forEach(sprint => {
         expect(sprint).toHaveProperty('sprint');
         expect(sprint).toHaveProperty('planned');
         expect(sprint).toHaveProperty('completed');
         expect(sprint).toHaveProperty('pct');
+        expect(sprint.sprint).toMatch(/MEDIAN 26-\d{2}/);
         expect(sprint.completed).toBeLessThanOrEqual(sprint.planned);
         expect(sprint.pct).toBeGreaterThanOrEqual(0);
         expect(sprint.pct).toBeLessThanOrEqual(100);
@@ -107,7 +129,7 @@ describe('Mock Data Integrity', () => {
   });
 
   describe('cycleTimeData', () => {
-    it('has valid cycle time metrics', () => {
+    it('has valid cycle time metrics (18-22 day range)', () => {
       expect(cycleTimeData.length).toBeGreaterThan(0);
       cycleTimeData.forEach(week => {
         expect(week).toHaveProperty('week');
@@ -116,7 +138,16 @@ describe('Mock Data Integrity', () => {
         expect(week).toHaveProperty('p90');
         expect(week.median).toBeLessThanOrEqual(week.avg);
         expect(week.avg).toBeLessThanOrEqual(week.p90);
+        // Check realistic range (15-45 days)
+        expect(week.avg).toBeGreaterThanOrEqual(15);
+        expect(week.avg).toBeLessThanOrEqual(45);
       });
+    });
+
+    it('has median in 16-22 day range', () => {
+      const avgMedian = cycleTimeData.reduce((a, b) => a + b.median, 0) / cycleTimeData.length;
+      expect(avgMedian).toBeGreaterThanOrEqual(16);
+      expect(avgMedian).toBeLessThanOrEqual(22);
     });
   });
 
@@ -143,6 +174,13 @@ describe('Mock Data Integrity', () => {
         expect(summary).toHaveProperty('status');
         expect(['up', 'down', 'stable']).toContain(summary.trend);
         expect(['good', 'warning', 'critical']).toContain(summary.status);
+      });
+    });
+
+    it('has realistic cycle times (15-30 days)', () => {
+      summaryData.forEach(summary => {
+        expect(summary.cycleTime).toBeGreaterThanOrEqual(15);
+        expect(summary.cycleTime).toBeLessThanOrEqual(30);
       });
     });
   });

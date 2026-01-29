@@ -14,6 +14,7 @@ import {
   dshbData,
   summaryData,
   getTeamStatus,
+  getTeamData,
 } from '../data/mockData';
 
 export default function Dashboard() {
@@ -25,10 +26,13 @@ export default function Dashboard() {
   );
   const [selectedTeam, setSelectedTeam] = useState(() => {
     if (teamKey) {
-      return teams.find(t => t.key === teamKey) || teams[1];
+      return teams.find(t => t.key === teamKey) || null;
     }
     const savedTeamId = localStorage.getItem('selectedTeamId');
-    return teams.find(t => t.id === Number(savedTeamId)) || teams[1];
+    if (savedTeamId) {
+      return teams.find(t => t.id === Number(savedTeamId)) || null;
+    }
+    return null; // No team selected = All teams view
   });
   const [collapsed, setCollapsed] = useState(
     localStorage.getItem('sidebarCollapsed') === 'true'
@@ -43,6 +47,9 @@ export default function Dashboard() {
     if (selectedTeam) {
       localStorage.setItem('selectedTeamId', selectedTeam.id);
       navigate(`/team/${selectedTeam.key}`, { replace: true });
+    } else {
+      localStorage.removeItem('selectedTeamId');
+      navigate('/team/ALL', { replace: true });
     }
   }, [selectedTeam, navigate]);
 
@@ -50,23 +57,43 @@ export default function Dashboard() {
     localStorage.setItem('sidebarCollapsed', collapsed);
   }, [collapsed]);
 
-  // Calculate metrics
-  const avgVelocity = Math.round(
-    velocityData.reduce((a, b) => a + b.pct, 0) / velocityData.length
-  );
-  const avgCycleTime = (
-    cycleTimeData.reduce((a, b) => a + b.avg, 0) / cycleTimeData.length
-  ).toFixed(1);
+  // Get team-specific data or default (all teams)
+  const teamData = selectedTeam ? getTeamData(selectedTeam.key) : null;
   
-  const currentVelocity = velocityData[velocityData.length - 1]?.pct || 0;
-  const prevVelocity = velocityData[velocityData.length - 2]?.pct || 0;
+  const activeVelocityData = teamData?.velocity || velocityData;
+  const activeCycleTimeData = teamData?.cycleTime || cycleTimeData;
+  const activeDshbData = teamData?.dshb || dshbData;
+
+  // Calculate metrics
+  const avgVelocity = teamData?.avgVelocity || Math.round(
+    activeVelocityData.reduce((a, b) => a + b.pct, 0) / activeVelocityData.length
+  );
+  const avgCycleTime = teamData?.avgCycleTime || Number(
+    (activeCycleTimeData.reduce((a, b) => a + b.avg, 0) / activeCycleTimeData.length).toFixed(1)
+  );
+  const medianCycleTime = Number(
+    (activeCycleTimeData.reduce((a, b) => a + b.median, 0) / activeCycleTimeData.length).toFixed(1)
+  );
+  
+  const currentVelocity = activeVelocityData[activeVelocityData.length - 1]?.pct || 0;
+  const prevVelocity = activeVelocityData[activeVelocityData.length - 2]?.pct || 0;
   const velocityTrend = currentVelocity - prevVelocity;
   
-  const currentCycleTime = cycleTimeData[cycleTimeData.length - 1]?.avg || 0;
-  const prevCycleTime = cycleTimeData[cycleTimeData.length - 2]?.avg || 0;
+  const currentCycleTime = activeCycleTimeData[activeCycleTimeData.length - 1]?.avg || 0;
+  const prevCycleTime = activeCycleTimeData[activeCycleTimeData.length - 2]?.avg || 0;
   const cycleTimeTrend = -Math.round(((currentCycleTime - prevCycleTime) / prevCycleTime) * 100);
 
   const velocityStatus = getTeamStatus(avgVelocity);
+
+  // Filter summary data by platform if needed
+  const filteredSummaryData = selectedPlatform === 'Все' 
+    ? summaryData 
+    : summaryData.filter(s => {
+        const team = teams.find(t => t.name === s.team);
+        return team?.platform === selectedPlatform;
+      });
+
+  const displayTitle = selectedTeam ? selectedTeam.name : 'All Teams (Median)';
 
   return (
     <div className="flex min-h-screen gradient-mesh">
@@ -89,7 +116,7 @@ export default function Dashboard() {
         {/* Hero Stat */}
         <div className="mb-6">
           <StatCard
-            title="Average Velocity"
+            title={`Average Velocity${selectedTeam ? '' : ' (Median)'}`}
             value={`${avgVelocity}%`}
             subtitle={`Target: 60% • Last Sprint: ${currentVelocity}%`}
             trend={velocityTrend}
@@ -109,35 +136,35 @@ export default function Dashboard() {
           <StatCard
             title="Avg Cycle Time"
             value={`${avgCycleTime}d`}
-            subtitle="Median: 2.0d"
+            subtitle={`Median: ${medianCycleTime}d`}
             trend={cycleTimeTrend}
             color="blue"
           />
           <StatCard
             title="ДШБ Progress"
-            value={`${dshbData.progressPct}%`}
-            subtitle={`${dshbData.current} / ${dshbData.target} багов`}
+            value={`${activeDshbData.progressPct}%`}
+            subtitle={`${activeDshbData.current} / ${activeDshbData.target} багов`}
             color="purple"
           />
           <StatCard
-            title="Active Teams"
-            value={teams.length}
-            subtitle="активных"
+            title={selectedTeam ? "Team" : "Active Teams"}
+            value={selectedTeam ? selectedTeam.name : teams.length}
+            subtitle={selectedTeam ? selectedTeam.platform : "активных"}
             color="blue"
           />
         </div>
 
         {/* Charts Row 1 */}
         <div className="grid grid-cols-2 gap-6 mb-6">
-          <VelocityChart data={velocityData} />
-          <CycleTimeChart data={cycleTimeData} />
+          <VelocityChart data={activeVelocityData} />
+          <CycleTimeChart data={activeCycleTimeData} />
         </div>
 
         {/* Charts Row 2 */}
         <div className="grid grid-cols-3 gap-6">
-          <DshbWidget data={dshbData} />
+          <DshbWidget data={activeDshbData} />
           <div className="col-span-2">
-            <SummaryTable data={summaryData} />
+            <SummaryTable data={filteredSummaryData} />
           </div>
         </div>
 
