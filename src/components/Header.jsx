@@ -37,6 +37,13 @@ export default function Header({ selectedTeam }) {
       </div>
       <div className="flex items-center gap-4">
         <Link 
+          to="/alerts" 
+          className="px-4 py-2 bg-zinc-800/50 hover:bg-zinc-700/50 border border-zinc-700/50 rounded-lg text-sm text-zinc-300 hover:text-white transition-all flex items-center gap-2"
+        >
+          <span>🚨</span>
+          Алерты
+        </Link>
+        <Link 
           to="/report" 
           className="px-4 py-2 bg-zinc-800/50 hover:bg-zinc-700/50 border border-zinc-700/50 rounded-lg text-sm text-zinc-300 hover:text-white transition-all flex items-center gap-2"
         >
