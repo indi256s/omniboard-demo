@@ -9,36 +9,39 @@ export default function Header({ selectedTeam }) {
   });
 
   return (
-    <header className="flex items-center justify-between mb-6">
-      <div>
+    <header className="mb-8">
+      {/* Stacked Layout */}
+      <div className="space-y-3">
+        {/* Row 1: Breadcrumb */}
         {selectedTeam ? (
-          <>
-            <div className="flex items-center gap-2 text-sm text-zinc-500 mb-1">
-              <button className="hover:text-white transition-colors">
-                ← Dashboard
-              </button>
-            </div>
-            <h1 className="text-2xl font-bold">{selectedTeam.name}</h1>
-            <div className="flex items-center gap-3 mt-1">
-              <span className="text-sm text-zinc-500 mono">{selectedTeam.key}</span>
-              <span className="px-2 py-0.5 bg-zinc-800/50 border border-zinc-700/50 rounded text-xs text-zinc-400">
-                {selectedTeam.platform}
-              </span>
-            </div>
-          </>
+          <div className="flex items-center gap-2 text-sm text-zinc-500">
+            <button className="hover:text-white transition-colors">Dashboard</button>
+            <span className="text-zinc-600">/</span>
+            <span className="text-zinc-400">{selectedTeam.platform}</span>
+            <span className="text-zinc-600">/</span>
+            <span className="text-zinc-300">{selectedTeam.key}</span>
+          </div>
         ) : (
-          <>
-            <h1 className="text-2xl font-bold">Dashboard</h1>
-            <p className="text-zinc-500 font-light">Обзор всех команд</p>
-          </>
+          <div className="text-sm text-zinc-500">Обзор</div>
         )}
-      </div>
-      <div className="flex items-center gap-4">
-        <div className="text-right">
-          <div className="text-xs text-zinc-500 font-light">Последнее обновление</div>
-          <div className="text-sm mono text-zinc-400">{formattedDate}</div>
+
+        {/* Row 2: Title */}
+        <h1 className="text-3xl font-bold tracking-tight">
+          {selectedTeam ? selectedTeam.name : 'All Teams'}
+        </h1>
+
+        {/* Row 3: Meta bar */}
+        <div className="flex items-center gap-4 text-sm">
+          {selectedTeam && (
+            <span className="px-2.5 py-1 bg-zinc-800/60 border border-zinc-700/50 rounded-md text-zinc-400">
+              {selectedTeam.platform}
+            </span>
+          )}
+          <div className="flex items-center gap-2 text-zinc-500">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+            <span className="text-zinc-400 mono">{formattedDate}</span>
+          </div>
         </div>
-        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
       </div>
     </header>
   );
