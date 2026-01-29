@@ -17,7 +17,7 @@ export default function DshbWidget({ data }) {
               ? 'bg-green-500/10 text-green-400 border-green-500/20' 
               : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
           }`}>
-            {progress >= 50 ? 'On Track' : 'At Risk'}
+            {progress >= 50 ? 'В норме' : 'Риск'}
           </div>
         </div>
         

@@ -41,11 +41,11 @@ export default function VelocityChart({ data }) {
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-green-500"></div>
-            <span className="text-zinc-400">Completed SP</span>
+            <span className="text-zinc-400">Выполнено SP</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-zinc-700"></div>
-            <span className="text-zinc-400">Planned SP</span>
+            <span className="text-zinc-400">Запланировано SP</span>
           </div>
         </div>
       </div>
@@ -64,8 +64,8 @@ export default function VelocityChart({ data }) {
             tickLine={false} 
           />
           <Tooltip content={<CustomTooltip />} />
-          <Bar dataKey="planned" fill="#3f3f46" radius={[4, 4, 0, 0]} name="Planned" />
-          <Bar dataKey="completed" radius={[4, 4, 0, 0]} name="Completed">
+          <Bar dataKey="planned" fill="#3f3f46" radius={[4, 4, 0, 0]} name="Запланировано" />
+          <Bar dataKey="completed" radius={[4, 4, 0, 0]} name="Выполнено">
             {data.map((entry, index) => (
               <Cell key={index} fill={entry.pct >= 60 ? '#10b981' : '#ef4444'} />
             ))}

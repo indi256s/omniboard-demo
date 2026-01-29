@@ -268,9 +268,9 @@ export const getStatusColor = (status) => {
 
 export const getStatusLabel = (status) => {
   switch (status) {
-    case 'good': return 'On Track';
-    case 'warning': return 'At Risk';
-    case 'critical': return 'Critical';
-    default: return 'Unknown';
+    case 'good': return 'В норме';
+    case 'warning': return 'Риск';
+    case 'critical': return 'Критично';
+    default: return 'Неизвестно';
   }
 };

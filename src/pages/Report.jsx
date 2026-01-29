@@ -114,7 +114,7 @@ export default function Report() {
                 ← Dashboard
               </Link>
             </div>
-            <h1 className="text-2xl font-bold text-white">Monthly Report</h1>
+            <h1 className="text-2xl font-bold text-white">Месячный отчёт</h1>
             <p className="text-zinc-500">{displayTitle} • {monthLabel}</p>
           </div>
           
@@ -134,21 +134,21 @@ export default function Report() {
         <div className="glass rounded-xl p-6 mb-6 animate-in">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-lg font-semibold text-white">Velocity Analysis</h2>
-              <p className="text-sm text-zinc-500">Sprint performance for {monthLabel}</p>
+              <h2 className="text-lg font-semibold text-white">Анализ Velocity</h2>
+              <p className="text-sm text-zinc-500">Результаты спринтов за {monthLabel}</p>
             </div>
             <div className="flex items-center gap-6">
               <div className="text-center">
                 <div className="text-2xl font-bold mono text-green-400">{data.velocity.avgVelocity}%</div>
-                <div className="text-xs text-zinc-500">Avg Velocity</div>
+                <div className="text-xs text-zinc-500">Сред. Velocity</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold mono text-blue-400">{data.velocity.totalCompleted}</div>
-                <div className="text-xs text-zinc-500">SP Completed</div>
+                <div className="text-xs text-zinc-500">Выполнено SP</div>
               </div>
               <div className="text-center">
                 <div className="text-lg font-bold mono text-green-400">{data.velocity.trend}</div>
-                <div className="text-xs text-zinc-500">vs Last Month</div>
+                <div className="text-xs text-zinc-500">vs прошлый мес.</div>
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function Report() {
             <div className="flex items-start gap-3">
               <span className="text-blue-400 text-lg">💡</span>
               <div>
-                <div className="text-sm font-medium text-blue-400 mb-1">Insight</div>
+                <div className="text-sm font-medium text-blue-400 mb-1">Вывод</div>
                 <p className="text-sm text-zinc-300">{data.velocity.insight}</p>
               </div>
             </div>
@@ -199,17 +199,17 @@ export default function Report() {
         <div className="glass rounded-xl p-6 mb-6 animate-in delay-1">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-lg font-semibold text-white">Cycle Time Breakdown</h2>
-              <p className="text-sm text-zinc-500">Time from Development to Done</p>
+              <h2 className="text-lg font-semibold text-white">Разбивка Cycle Time</h2>
+              <p className="text-sm text-zinc-500">Время от Development до Done</p>
             </div>
             <div className="flex items-center gap-6">
               <div className="text-center">
                 <div className="text-2xl font-bold mono text-blue-400">{data.cycleTime.overallMedian}d</div>
-                <div className="text-xs text-zinc-500">Median</div>
+                <div className="text-xs text-zinc-500">Медиана</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold mono text-zinc-400">{data.cycleTime.overallAvg}d</div>
-                <div className="text-xs text-zinc-500">Average</div>
+                <div className="text-xs text-zinc-500">Среднее</div>
               </div>
             </div>
           </div>
@@ -217,7 +217,7 @@ export default function Report() {
           <div className="grid grid-cols-2 gap-6">
             {/* By Issue Type */}
             <div>
-              <h3 className="text-sm font-medium text-zinc-400 mb-3">By Issue Type</h3>
+              <h3 className="text-sm font-medium text-zinc-400 mb-3">По типу задач</h3>
               <div className="space-y-3">
                 {data.cycleTime.byType.map((item, i) => (
                   <div key={i} className="flex items-center gap-4">
@@ -244,7 +244,7 @@ export default function Report() {
             
             {/* By Stage */}
             <div>
-              <h3 className="text-sm font-medium text-zinc-400 mb-3">By Stage</h3>
+              <h3 className="text-sm font-medium text-zinc-400 mb-3">По этапам</h3>
               <div className="space-y-3">
                 {data.cycleTime.byStage.map((item, i) => (
                   <div key={i} className="flex items-center gap-4">
@@ -268,7 +268,7 @@ export default function Report() {
                 ))}
               </div>
               <div className="mt-3 text-xs text-red-400">
-                ⚠️ Bottleneck: {data.cycleTime.bottleneck}
+                ⚠️ Узкое место: {data.cycleTime.bottleneck}
               </div>
             </div>
           </div>
@@ -278,7 +278,7 @@ export default function Report() {
             <div className="flex items-start gap-3">
               <span className="text-yellow-400 text-lg">💡</span>
               <div>
-                <div className="text-sm font-medium text-yellow-400 mb-1">Insight</div>
+                <div className="text-sm font-medium text-yellow-400 mb-1">Вывод</div>
                 <p className="text-sm text-zinc-300">{data.cycleTime.insight}</p>
               </div>
             </div>

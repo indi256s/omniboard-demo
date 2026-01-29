@@ -17,8 +17,8 @@ export default function SummaryTable({ data }) {
               <th className="text-right py-3 px-2 font-medium">Velocity</th>
               <th className="text-right py-3 px-2 font-medium">Cycle Time</th>
               <th className="text-right py-3 px-2 font-medium">ДШБ</th>
-              <th className="text-right py-3 px-2 font-medium">Trend</th>
-              <th className="text-right py-3 px-2 font-medium">Status</th>
+              <th className="text-right py-3 px-2 font-medium">Тренд</th>
+              <th className="text-right py-3 px-2 font-medium">Статус</th>
             </tr>
           </thead>
           <tbody>

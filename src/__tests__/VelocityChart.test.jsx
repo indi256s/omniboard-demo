@@ -35,8 +35,8 @@ describe('VelocityChart', () => {
 
   it('displays legend items', () => {
     render(<VelocityChart data={mockData} />);
-    expect(screen.getByText('Completed SP')).toBeInTheDocument();
-    expect(screen.getByText('Planned SP')).toBeInTheDocument();
+    expect(screen.getByText('Выполнено SP')).toBeInTheDocument();
+    expect(screen.getByText('Запланировано SP')).toBeInTheDocument();
   });
 
   it('renders chart container', () => {

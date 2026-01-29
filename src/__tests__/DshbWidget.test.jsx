@@ -69,7 +69,7 @@ describe('DshbWidget', () => {
     expect(screen.getByText('Progress')).toBeInTheDocument();
   });
 
-  it('shows At Risk status when progress < 50%', () => {
+  it('shows Риск status when progress < 50%', () => {
     // Progress is calculated: ((baseline - current) / (baseline - target)) * 100
     // For At Risk, need progress < 50%, so: (baseline - current) / (baseline - target) < 0.5
     const atRiskData = { 
@@ -80,12 +80,12 @@ describe('DshbWidget', () => {
       quarter: 'Q1 2026' 
     };
     render(<DshbWidget data={atRiskData} />);
-    expect(screen.getByText('At Risk')).toBeInTheDocument();
+    expect(screen.getByText('Риск')).toBeInTheDocument();
   });
 
-  it('shows On Track status when progress >= 50%', () => {
+  it('shows В норме status when progress >= 50%', () => {
     render(<DshbWidget data={mockDataOnTrack} />);
-    expect(screen.getByText('On Track')).toBeInTheDocument();
+    expect(screen.getByText('В норме')).toBeInTheDocument();
   });
 
   it('has horizontal layout with stats on the right', () => {
@@ -126,6 +126,6 @@ describe('DshbWidget Edge Cases', () => {
       quarter: 'Q1 2026'
     };
     render(<DshbWidget data={overachievedData} />);
-    expect(screen.getByText('On Track')).toBeInTheDocument();
+    expect(screen.getByText('В норме')).toBeInTheDocument();
   });
 });

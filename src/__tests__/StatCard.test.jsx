@@ -23,24 +23,24 @@ describe('StatCard Component', () => {
 
   it('renders status badge for good status', () => {
     render(<StatCard {...defaultProps} status="good" />);
-    expect(screen.getByText('On Track')).toBeInTheDocument();
+    expect(screen.getByText('В норме')).toBeInTheDocument();
   });
 
   it('renders status badge for warning status', () => {
     render(<StatCard {...defaultProps} status="warning" />);
-    expect(screen.getByText('At Risk')).toBeInTheDocument();
+    expect(screen.getByText('Риск')).toBeInTheDocument();
   });
 
   it('renders status badge for critical status', () => {
     render(<StatCard {...defaultProps} status="critical" />);
-    expect(screen.getByText('Critical')).toBeInTheDocument();
+    expect(screen.getByText('Критично')).toBeInTheDocument();
   });
 
   it('renders without status', () => {
     const { title, value, subtitle } = defaultProps;
     render(<StatCard title={title} value={value} subtitle={subtitle} />);
     expect(screen.getByText('Velocity')).toBeInTheDocument();
-    expect(screen.queryByText('On Track')).not.toBeInTheDocument();
+    expect(screen.queryByText('В норме')).not.toBeInTheDocument();
   });
 
   it('renders trend indicator when positive', () => {

@@ -41,11 +41,11 @@ export default function CycleTimeChart({ data }) {
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-blue-500"></div>
-            <span className="text-zinc-400">Median</span>
+            <span className="text-zinc-400">Медиана</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-green-500"></div>
-            <span className="text-zinc-400">Avg</span>
+            <span className="text-zinc-400">Среднее</span>
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function CycleTimeChart({ data }) {
             stroke="#3b82f6" 
             strokeWidth={2} 
             dot={{ fill: '#3b82f6', strokeWidth: 0, r: 3 }}
-            name="Median"
+            name="Медиана"
           />
           <Line 
             type="monotone" 
@@ -93,7 +93,7 @@ export default function CycleTimeChart({ data }) {
             stroke="#10b981" 
             strokeWidth={2} 
             dot={{ fill: '#10b981', strokeWidth: 0, r: 3 }}
-            name="Average"
+            name="Среднее"
           />
         </AreaChart>
       </ResponsiveContainer>

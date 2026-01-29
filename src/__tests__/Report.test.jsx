@@ -22,7 +22,7 @@ describe('Report Page', () => {
   it('displays Monthly Report title', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText('Monthly Report')).toBeInTheDocument();
+      expect(screen.getByText('Месячный отчёт')).toBeInTheDocument();
     });
   });
 
@@ -36,37 +36,37 @@ describe('Report Page', () => {
   it('renders Velocity Analysis section', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText('Velocity Analysis')).toBeInTheDocument();
+      expect(screen.getByText('Анализ Velocity')).toBeInTheDocument();
     });
   });
 
   it('renders Cycle Time Breakdown section', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText('Cycle Time Breakdown')).toBeInTheDocument();
+      expect(screen.getByText('Разбивка Cycle Time')).toBeInTheDocument();
     });
   });
 
   it('displays velocity metrics', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText('Avg Velocity')).toBeInTheDocument();
-      expect(screen.getByText('SP Completed')).toBeInTheDocument();
+      expect(screen.getByText('Сред. Velocity')).toBeInTheDocument();
+      expect(screen.getByText('Выполнено SP')).toBeInTheDocument();
     });
   });
 
   it('displays cycle time metrics', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText('Median')).toBeInTheDocument();
-      expect(screen.getByText('Average')).toBeInTheDocument();
+      expect(screen.getByText('Медиана')).toBeInTheDocument();
+      expect(screen.getByText('Среднее')).toBeInTheDocument();
     });
   });
 
   it('shows By Issue Type breakdown', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText('By Issue Type')).toBeInTheDocument();
+      expect(screen.getByText('По типу задач')).toBeInTheDocument();
       expect(screen.getByText('Bug')).toBeInTheDocument();
       expect(screen.getByText('Task')).toBeInTheDocument();
       expect(screen.getByText('Story')).toBeInTheDocument();
@@ -76,7 +76,7 @@ describe('Report Page', () => {
   it('shows By Stage breakdown', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText('By Stage')).toBeInTheDocument();
+      expect(screen.getByText('По этапам')).toBeInTheDocument();
       expect(screen.getByText('Development')).toBeInTheDocument();
       expect(screen.getByText('Code Review')).toBeInTheDocument();
       expect(screen.getByText('QA')).toBeInTheDocument();
@@ -86,7 +86,7 @@ describe('Report Page', () => {
   it('displays insights', async () => {
     renderReport();
     await waitFor(() => {
-      const insights = screen.getAllByText('Insight');
+      const insights = screen.getAllByText('Вывод');
       expect(insights.length).toBeGreaterThanOrEqual(2);
     });
   });
@@ -94,7 +94,7 @@ describe('Report Page', () => {
   it('shows bottleneck warning', async () => {
     renderReport();
     await waitFor(() => {
-      expect(screen.getByText(/Bottleneck/)).toBeInTheDocument();
+      expect(screen.getByText(/Узкое место/)).toBeInTheDocument();
     });
   });
 

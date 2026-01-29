@@ -54,14 +54,14 @@ describe('Data Helper Functions', () => {
 
   describe('getStatusLabel', () => {
     it('returns correct labels', () => {
-      expect(getStatusLabel('good')).toBe('On Track');
-      expect(getStatusLabel('warning')).toBe('At Risk');
-      expect(getStatusLabel('critical')).toBe('Critical');
+      expect(getStatusLabel('good')).toBe('В норме');
+      expect(getStatusLabel('warning')).toBe('Риск');
+      expect(getStatusLabel('critical')).toBe('Критично');
     });
 
-    it('returns "Unknown" for invalid status', () => {
-      expect(getStatusLabel('invalid')).toBe('Unknown');
-      expect(getStatusLabel('')).toBe('Unknown');
+    it('returns "Неизвестно" for invalid status', () => {
+      expect(getStatusLabel('invalid')).toBe('Неизвестно');
+      expect(getStatusLabel('')).toBe('Неизвестно');
     });
   });
 
