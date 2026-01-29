@@ -66,11 +66,11 @@ export default function VelocityChart({ data }) {
           />
           <Tooltip content={<CustomTooltip />} />
           <ReferenceLine 
-            y={60} 
+            y={73} 
             stroke="#eab308" 
             strokeDasharray="5 5" 
             label={{ 
-              value: 'Target 60%', 
+              value: 'Target 73%', 
               fill: '#eab308', 
               fontSize: 11,
               position: 'right'
@@ -79,7 +79,7 @@ export default function VelocityChart({ data }) {
           <Bar dataKey="planned" fill="#3f3f46" radius={[4, 4, 0, 0]} name="Planned" />
           <Bar dataKey="completed" radius={[4, 4, 0, 0]} name="Completed">
             {data.map((entry, index) => (
-              <Cell key={index} fill={entry.pct >= 60 ? '#10b981' : '#ef4444'} />
+              <Cell key={index} fill={entry.pct >= 73 ? '#10b981' : '#ef4444'} />
             ))}
           </Bar>
         </BarChart>
@@ -88,7 +88,7 @@ export default function VelocityChart({ data }) {
         {data.map((d, i) => (
           <div key={i} className="text-center">
             <div className={`text-xs font-medium mono ${
-              d.pct >= 60 ? 'text-green-400' : 'text-red-400'
+              d.pct >= 73 ? 'text-green-400' : 'text-red-400'
             }`}>
               {d.pct}%
             </div>

@@ -1,8 +1,20 @@
 export const teams = [
-  { id: 1, name: 'Web Production', platform: 'Web', key: 'WPROD' },
-  { id: 2, name: 'Disrupt', platform: 'Web', key: 'DISRUPT' },
-  { id: 3, name: 'Zvuk Client', platform: 'Backend', key: 'ZCL' },
-  { id: 4, name: 'Zvuk iOS', platform: 'iOS', key: 'ZIOS' },
+  { id: 1, name: 'Surf', platform: 'iOS', key: 'SURF' },
+  { id: 2, name: 'Web Production', platform: 'Web', key: 'WPROD' },
+  { id: 3, name: 'Disrupt', platform: 'Web', key: 'DISRUPT' },
+  { id: 4, name: 'Radiocat', platform: 'Android', key: 'RADIOCAT' },
+  { id: 5, name: 'Zvuk Client', platform: 'Backend', key: 'ZCL' },
+  { id: 6, name: 'Acquisition', platform: 'Web', key: 'ACQ' },
+  { id: 7, name: 'Discovery', platform: 'Backend', key: 'DISC' },
+  { id: 8, name: 'Wave', platform: 'iOS', key: 'WAVE' },
+  { id: 9, name: 'Social Intelligence', platform: 'DS', key: 'SOCINT' },
+  { id: 10, name: 'Web Platform', platform: 'Web', key: 'WPLT' },
+  { id: 11, name: 'Zvuk iOS', platform: 'iOS', key: 'ZIOS' },
+  { id: 12, name: 'Zvuk Android', platform: 'Android', key: 'ZAND' },
+  { id: 13, name: 'New Zealand', platform: 'Backend', key: 'NZ' },
+  { id: 14, name: 'Internal Tools', platform: 'Web', key: 'INTR' },
+  { id: 15, name: 'Integrations', platform: 'Backend', key: 'INTG' },
+  { id: 16, name: 'Content & Growth', platform: 'DE', key: 'CNG' },
 ];
 
 export const platforms = ['Все', 'iOS', 'Android', 'Backend', 'Web', 'DE', 'DS'];
@@ -36,10 +48,22 @@ export const dshbData = {
 };
 
 export const summaryData = [
-  { team: 'Web Production', velocity: 81, cycleTime: 3.2, dshb: -12, trend: 'up', status: 'good' },
+  { team: 'Surf', velocity: 88, cycleTime: 2.0, dshb: -18, trend: 'up', status: 'good' },
+  { team: 'Web Production', velocity: 81, cycleTime: 2.3, dshb: -15, trend: 'up', status: 'good' },
   { team: 'Disrupt', velocity: 85, cycleTime: 2.1, dshb: -18, trend: 'up', status: 'good' },
-  { team: 'Zvuk Client', velocity: 72, cycleTime: 3.8, dshb: -8, trend: 'stable', status: 'warning' },
-  { team: 'Zvuk iOS', velocity: 68, cycleTime: 4.1, dshb: -5, trend: 'down', status: 'critical' },
+  { team: 'Radiocat', velocity: 76, cycleTime: 2.8, dshb: -12, trend: 'up', status: 'good' },
+  { team: 'Zvuk Client', velocity: 74, cycleTime: 3.1, dshb: -10, trend: 'stable', status: 'good' },
+  { team: 'Acquisition', velocity: 78, cycleTime: 2.6, dshb: -14, trend: 'up', status: 'good' },
+  { team: 'Discovery', velocity: 72, cycleTime: 3.3, dshb: -9, trend: 'stable', status: 'warning' },
+  { team: 'Wave', velocity: 83, cycleTime: 2.2, dshb: -16, trend: 'up', status: 'good' },
+  { team: 'Social Intelligence', velocity: 69, cycleTime: 3.8, dshb: -7, trend: 'stable', status: 'warning' },
+  { team: 'Web Platform', velocity: 79, cycleTime: 2.5, dshb: -13, trend: 'up', status: 'good' },
+  { team: 'Zvuk iOS', velocity: 70, cycleTime: 3.5, dshb: -8, trend: 'stable', status: 'warning' },
+  { team: 'Zvuk Android', velocity: 73, cycleTime: 3.0, dshb: -11, trend: 'up', status: 'good' },
+  { team: 'New Zealand', velocity: 66, cycleTime: 4.2, dshb: -6, trend: 'down', status: 'warning' },
+  { team: 'Internal Tools', velocity: 75, cycleTime: 2.9, dshb: -10, trend: 'stable', status: 'good' },
+  { team: 'Integrations', velocity: 71, cycleTime: 3.4, dshb: -8, trend: 'stable', status: 'warning' },
+  { team: 'Content & Growth', velocity: 65, cycleTime: 4.5, dshb: -5, trend: 'down', status: 'critical' },
 ];
 
 // Helper functions
