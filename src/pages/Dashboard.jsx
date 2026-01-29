@@ -158,12 +158,14 @@ export default function Dashboard() {
           <CycleTimeChart data={activeCycleTimeData} />
         </div>
 
-        {/* Charts Row 2 */}
-        <div className="grid grid-cols-3 gap-6">
+        {/* ДШБ Widget - Full Width */}
+        <div className="mb-6">
           <DshbWidget data={activeDshbData} />
-          <div className="col-span-2">
-            <SummaryTable data={filteredSummaryData} />
-          </div>
+        </div>
+
+        {/* Summary Table */}
+        <div className="mb-6">
+          <SummaryTable data={filteredSummaryData} />
         </div>
 
         {/* Footer */}
