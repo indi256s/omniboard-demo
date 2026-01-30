@@ -16,20 +16,20 @@ const mockData = [
 describe('CycleTimeChart Component', () => {
   it('renders without crashing', () => {
     render(<CycleTimeChart data={mockData} />);
-    expect(screen.getByText('Время цикла')).toBeInTheDocument();
+    expect(screen.getByText('Cycle Time')).toBeInTheDocument();
   });
 
-  it('displays correct title in Russian', () => {
+  it('displays correct title', () => {
     render(<CycleTimeChart data={mockData} />);
-    expect(screen.getByText('Время цикла')).toBeInTheDocument();
+    expect(screen.getByText('Cycle Time')).toBeInTheDocument();
     expect(screen.getByText(/Последние 8 недель/)).toBeInTheDocument();
   });
 
-  it('shows legend with Russian labels', () => {
+  it('shows legend labels', () => {
     render(<CycleTimeChart data={mockData} />);
     expect(screen.getByText('P90')).toBeInTheDocument();
-    expect(screen.getByText('Медиана')).toBeInTheDocument();
-    expect(screen.getByText('Среднее')).toBeInTheDocument();
+    expect(screen.getByText('Median')).toBeInTheDocument();
+    expect(screen.getByText('Avg')).toBeInTheDocument();
   });
 
   it('displays target information', () => {
@@ -63,7 +63,7 @@ describe('CycleTimeChart Component', () => {
     const { container } = render(<CycleTimeChart data={mockData} />);
     
     // Check for target label
-    const targetLabel = screen.getByText('ЦЕЛЬ');
+    const targetLabel = screen.getByText('TARGET');
     expect(targetLabel).toBeInTheDocument();
   });
 
@@ -103,7 +103,7 @@ describe('CycleTimeChart Zone Backgrounds', () => {
     ];
     
     render(<CycleTimeChart data={goodData} />);
-    expect(screen.getByText('Время цикла')).toBeInTheDocument();
+    expect(screen.getByText('Cycle Time')).toBeInTheDocument();
   });
 
   it('displays chart correctly with warning cycle times (3-5d)', () => {
@@ -114,7 +114,7 @@ describe('CycleTimeChart Zone Backgrounds', () => {
     ];
     
     render(<CycleTimeChart data={warningData} />);
-    expect(screen.getByText('Время цикла')).toBeInTheDocument();
+    expect(screen.getByText('Cycle Time')).toBeInTheDocument();
   });
 
   it('displays chart correctly with poor cycle times (> 5d)', () => {
@@ -125,7 +125,7 @@ describe('CycleTimeChart Zone Backgrounds', () => {
     ];
     
     render(<CycleTimeChart data={poorData} />);
-    expect(screen.getByText('Время цикла')).toBeInTheDocument();
+    expect(screen.getByText('Cycle Time')).toBeInTheDocument();
   });
 });
 
@@ -137,7 +137,7 @@ describe('CycleTimeChart Data Processing', () => {
     ];
     
     render(<CycleTimeChart data={variedData} />);
-    expect(screen.getByText('Время цикла')).toBeInTheDocument();
+    expect(screen.getByText('Cycle Time')).toBeInTheDocument();
   });
 
   it('handles decimal values correctly', () => {
@@ -147,6 +147,6 @@ describe('CycleTimeChart Data Processing', () => {
     ];
     
     render(<CycleTimeChart data={decimalData} />);
-    expect(screen.getByText('Время цикла')).toBeInTheDocument();
+    expect(screen.getByText('Cycle Time')).toBeInTheDocument();
   });
 });

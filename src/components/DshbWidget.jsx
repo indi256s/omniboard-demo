@@ -41,7 +41,7 @@ export default function DshbWidget({ data }) {
         {/* Progress Bar */}
         <div>
           <div className="flex justify-between text-xs text-zinc-500 mb-2 font-light">
-            <span>Прогресс</span>
+            <span>Progress</span>
             <span className="mono">{progress.toFixed(1)}%</span>
           </div>
           <div className="h-3 bg-zinc-800/50 rounded-full overflow-hidden">

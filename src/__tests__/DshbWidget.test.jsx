@@ -54,7 +54,7 @@ describe('DshbWidget Component', () => {
 
   it('shows progress label in Russian', () => {
     render(<DshbWidget data={mockData} />);
-    expect(screen.getByText('Прогресс')).toBeInTheDocument();
+    expect(screen.getByText('Progress')).toBeInTheDocument();
   });
 
   it('displays progress percentage', () => {

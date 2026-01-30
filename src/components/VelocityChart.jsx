@@ -62,17 +62,17 @@ export default function VelocityChart({ data }) {
     <div className="glass rounded-xl p-5 animate-in delay-1">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="font-semibold text-white">Скорость</h3>
+          <h3 className="font-semibold text-white">Velocity</h3>
           <p className="text-sm text-zinc-500 font-light">Последние 6 спринтов • Цель: 60%+</p>
         </div>
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-green-500"></div>
-            <span className="text-zinc-400">Выполнено SP</span>
+            <span className="text-zinc-400">Completed SP</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-zinc-700"></div>
-            <span className="text-zinc-400">Запланировано SP</span>
+            <span className="text-zinc-400">Planned SP</span>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function VelocityChart({ data }) {
             tick={{ fill: '#71717a', fontSize: 12 }} 
             axisLine={false} 
             tickLine={false}
-            label={{ value: 'Очки', angle: -90, position: 'insideLeft', fill: '#71717a', fontSize: 11 }}
+            label={{ value: 'Story Points', angle: -90, position: 'insideLeft', fill: '#71717a', fontSize: 11 }}
           />
           <Tooltip content={<CustomTooltip />} />
           
@@ -100,7 +100,7 @@ export default function VelocityChart({ data }) {
             strokeWidth={2}
             strokeDasharray="3 3"
             label={{ 
-              value: `Цель 60% (${Math.round(targetLine)} SP)`, 
+              value: `Target 60% (${Math.round(targetLine)} SP)`, 
               fill: '#eab308', 
               fontSize: 10,
               fontWeight: 600,
@@ -108,8 +108,8 @@ export default function VelocityChart({ data }) {
             }} 
           />
           
-          <Bar dataKey="planned" fill="#3f3f46" radius={[4, 4, 0, 0]} name="Запланировано" />
-          <Bar dataKey="completed" radius={[4, 4, 0, 0]} name="Выполнено">
+          <Bar dataKey="planned" fill="#3f3f46" radius={[4, 4, 0, 0]} name="Planned" />
+          <Bar dataKey="completed" radius={[4, 4, 0, 0]} name="Completed">
             {data.map((entry, index) => (
               <Cell key={index} fill={entry.pct >= 60 ? '#10b981' : entry.pct >= 50 ? '#eab308' : '#ef4444'} />
             ))}

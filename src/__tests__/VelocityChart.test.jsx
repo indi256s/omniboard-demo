@@ -14,19 +14,19 @@ const mockData = [
 describe('VelocityChart Component', () => {
   it('renders without crashing', () => {
     render(<VelocityChart data={mockData} />);
-    expect(screen.getByText('Скорость')).toBeInTheDocument();
+    expect(screen.getByText('Velocity')).toBeInTheDocument();
   });
 
-  it('displays correct title in Russian', () => {
+  it('displays correct title', () => {
     render(<VelocityChart data={mockData} />);
-    expect(screen.getByText('Скорость')).toBeInTheDocument();
+    expect(screen.getByText('Velocity')).toBeInTheDocument();
     expect(screen.getByText(/Последние 6 спринтов/)).toBeInTheDocument();
   });
 
-  it('shows legend with Russian labels', () => {
+  it('shows legend labels', () => {
     render(<VelocityChart data={mockData} />);
-    expect(screen.getByText('Выполнено SP')).toBeInTheDocument();
-    expect(screen.getByText('Запланировано SP')).toBeInTheDocument();
+    expect(screen.getByText('Completed SP')).toBeInTheDocument();
+    expect(screen.getByText('Planned SP')).toBeInTheDocument();
   });
 
   it('renders chart container', () => {

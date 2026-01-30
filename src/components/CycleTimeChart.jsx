@@ -33,7 +33,7 @@ export default function CycleTimeChart({ data }) {
     <div className="glass rounded-xl p-5 animate-in delay-2">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="font-semibold text-white">Время цикла</h3>
+          <h3 className="font-semibold text-white">Cycle Time</h3>
           <p className="text-sm text-zinc-500 font-light">Последние 8 недель (дни) • Цель: &lt;3д</p>
         </div>
         <div className="flex items-center gap-4 text-xs">
@@ -43,11 +43,11 @@ export default function CycleTimeChart({ data }) {
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-blue-500"></div>
-            <span className="text-zinc-400">Медиана</span>
+            <span className="text-zinc-400">Median</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-green-500"></div>
-            <span className="text-zinc-400">Среднее</span>
+            <span className="text-zinc-400">Avg</span>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default function CycleTimeChart({ data }) {
             stroke="#10b981" 
             strokeWidth={2}
             label={{ 
-              value: 'ЦЕЛЬ', 
+              value: 'TARGET', 
               fill: '#10b981', 
               fontSize: 10,
               fontWeight: 700,
@@ -108,7 +108,7 @@ export default function CycleTimeChart({ data }) {
             stroke="#3b82f6" 
             strokeWidth={2} 
             dot={{ fill: '#3b82f6', strokeWidth: 0, r: 3 }}
-            name="Медиана"
+            name="Median"
           />
           <Line 
             type="monotone" 
@@ -116,7 +116,7 @@ export default function CycleTimeChart({ data }) {
             stroke="#10b981" 
             strokeWidth={2} 
             dot={{ fill: '#10b981', strokeWidth: 0, r: 3 }}
-            name="Среднее"
+            name="Average"
           />
         </AreaChart>
       </ResponsiveContainer>
