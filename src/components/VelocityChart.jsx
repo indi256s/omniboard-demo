@@ -7,7 +7,9 @@ import {
   Tooltip,
   ResponsiveContainer,
   ReferenceLine,
+  ReferenceArea,
   Cell,
+  LabelList,
 } from 'recharts';
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -31,13 +33,35 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
+const CustomLabel = (props) => {
+  const { x, y, width, value, index, data } = props;
+  const pct = data[index]?.pct;
+  
+  return (
+    <text
+      x={x + width / 2}
+      y={y - 8}
+      fill={pct >= 60 ? '#10b981' : pct >= 50 ? '#eab308' : '#ef4444'}
+      textAnchor="middle"
+      fontSize={12}
+      fontWeight={600}
+      fontFamily="JetBrains Mono, monospace"
+    >
+      {pct}%
+    </text>
+  );
+};
+
 export default function VelocityChart({ data }) {
+  const maxPlanned = Math.max(...data.map(d => d.planned));
+  const yMax = Math.ceil(maxPlanned * 1.15);
+
   return (
     <div className="glass rounded-xl p-5 animate-in delay-1">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="font-semibold text-white">Velocity</h3>
-          <p className="text-sm text-zinc-500 font-light">Последние 6 спринтов</p>
+          <p className="text-sm text-zinc-500 font-light">Последние 6 спринтов • Target: 60%+</p>
         </div>
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-2">
@@ -50,8 +74,13 @@ export default function VelocityChart({ data }) {
           </div>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={240}>
+      <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data} barGap={4}>
+          {/* Background zones */}
+          <ReferenceArea y1={0} y2={50} fill="#ef4444" fillOpacity={0.05} />
+          <ReferenceArea y1={50} y2={60} fill="#eab308" fillOpacity={0.08} />
+          <ReferenceArea y1={60} y2={100} fill="#10b981" fillOpacity={0.06} />
+          
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
           <XAxis 
             dataKey="sprint" 
@@ -62,39 +91,34 @@ export default function VelocityChart({ data }) {
           <YAxis 
             tick={{ fill: '#71717a', fontSize: 12 }} 
             axisLine={false} 
-            tickLine={false} 
+            tickLine={false}
+            domain={[0, 100]}
           />
           <Tooltip content={<CustomTooltip />} />
+          
+          {/* Bold target line */}
           <ReferenceLine 
             y={60} 
             stroke="#eab308" 
-            strokeDasharray="5 5" 
+            strokeWidth={2}
             label={{ 
-              value: 'Target 60%', 
+              value: 'TARGET', 
               fill: '#eab308', 
-              fontSize: 11,
-              position: 'right'
+              fontSize: 10,
+              fontWeight: 700,
+              position: 'insideTopRight'
             }} 
           />
+          
           <Bar dataKey="planned" fill="#3f3f46" radius={[4, 4, 0, 0]} name="Planned" />
           <Bar dataKey="completed" radius={[4, 4, 0, 0]} name="Completed">
             {data.map((entry, index) => (
-              <Cell key={index} fill={entry.pct >= 60 ? '#10b981' : '#ef4444'} />
+              <Cell key={index} fill={entry.pct >= 60 ? '#10b981' : entry.pct >= 50 ? '#eab308' : '#ef4444'} />
             ))}
+            <LabelList content={<CustomLabel data={data} />} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <div className="flex justify-center gap-4 mt-2">
-        {data.map((d, i) => (
-          <div key={i} className="text-center">
-            <div className={`text-xs font-medium mono ${
-              d.pct >= 60 ? 'text-green-400' : 'text-red-400'
-            }`}>
-              {d.pct}%
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
