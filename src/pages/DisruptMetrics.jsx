@@ -6,7 +6,7 @@ import WaitTimeChart from '../components/WaitTimeChart';
 import OwnershipRing from '../components/OwnershipRing';
 import DisruptTrendChart from '../components/DisruptTrendChart';
 import SolutionsList from '../components/SolutionsList';
-import { disruptMetrics, platforms } from '../data/disruptData';
+import { disruptMetrics } from '../data/disruptData';
 
 export default function DisruptMetrics() {
   const navigate = useNavigate();
