@@ -4,6 +4,7 @@ import { MemoryRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import Alerts from '../pages/Alerts';
 import Report from '../pages/Report';
+import DisruptMetrics from '../pages/DisruptMetrics';
 
 // Test component that mimics App routing without BrowserRouter
 function TestApp({ initialRoute }) {
@@ -14,6 +15,7 @@ function TestApp({ initialRoute }) {
         <Route path="/team/:teamKey" element={<Dashboard />} />
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/report" element={<Report />} />
+        <Route path="/disrupt_metrics" element={<DisruptMetrics />} />
       </Routes>
     </MemoryRouter>
   );
@@ -68,5 +70,11 @@ describe('App Routing', () => {
     render(<TestApp initialRoute="/report" />);
     expect(screen.getByRole('main')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Отчёт');
+  });
+
+  it('renders DisruptMetrics page at /disrupt_metrics', () => {
+    render(<TestApp initialRoute="/disrupt_metrics" />);
+    expect(screen.getByRole('main')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Disrupt Metrics');
   });
 });

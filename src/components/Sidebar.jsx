@@ -29,6 +29,7 @@ export default function Sidebar({
   const [searchQuery, setSearchQuery] = useState('');
   const isAlertsPage = location.pathname === '/alerts';
   const isReportPage = location.pathname === '/report';
+  const isDisruptPage = location.pathname === '/disrupt_metrics';
   
   const filteredTeams = teams
     .filter(t => selectedPlatform === 'Все' || t.platform === selectedPlatform)
@@ -88,6 +89,18 @@ export default function Sidebar({
           >
             <span>📊</span>
             {!collapsed && <span>Отчёт</span>}
+          </button>
+          <button
+            onClick={() => navigate('/disrupt_metrics')}
+            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${
+              isDisruptPage
+                ? 'bg-purple-500/10 text-purple-400 border-l-2 border-purple-500'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+            } ${collapsed ? 'justify-center px-2' : ''}`}
+            title="Disrupt Metrics"
+          >
+            <span>⚡</span>
+            {!collapsed && <span>Disrupt</span>}
           </button>
         </div>
       </div>
