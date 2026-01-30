@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import T2MGauge from '../components/T2MGauge';
@@ -5,11 +6,22 @@ import WaitTimeChart from '../components/WaitTimeChart';
 import OwnershipRing from '../components/OwnershipRing';
 import DisruptTrendChart from '../components/DisruptTrendChart';
 import SolutionsList from '../components/SolutionsList';
-import { disruptMetrics } from '../data/disruptData';
+import { disruptMetrics, platforms } from '../data/disruptData';
 
 export default function DisruptMetrics() {
   const navigate = useNavigate();
   const data = disruptMetrics;
+  
+  const [collapsed, setCollapsed] = useState(
+    localStorage.getItem('sidebarCollapsed') === 'true'
+  );
+  const [selectedPlatform, setSelectedPlatform] = useState(
+    localStorage.getItem('selectedPlatform') || 'Все'
+  );
+  
+  useEffect(() => {
+    localStorage.setItem('sidebarCollapsed', collapsed);
+  }, [collapsed]);
   
   const t2mDelta = data.t2m.previous - data.t2m.current;
   const waitDelta = data.waitTime.previous - data.waitTime.ratio;
@@ -17,11 +29,15 @@ export default function DisruptMetrics() {
   return (
     <div className="flex min-h-screen gradient-mesh">
       <Sidebar 
-        currentPath="/disrupt_metrics"
-        onNavigate={(path) => navigate(path)}
+        selectedPlatform={selectedPlatform}
+        setSelectedPlatform={setSelectedPlatform}
+        selectedTeam={null}
+        setSelectedTeam={() => navigate('/team/ALL')}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
       />
       
-      <main className="flex-1 p-8 transition-all duration-300 ml-64">
+      <main className={`flex-1 p-8 transition-all duration-300 ${collapsed ? 'ml-16' : 'ml-64'}`}>
         {/* Header */}
         <header className="mb-8">
           <div className="flex items-center gap-3 mb-2">
