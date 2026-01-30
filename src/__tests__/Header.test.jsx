@@ -34,7 +34,9 @@ describe('Header Component', () => {
       key: 'DISRUPT'
     };
     render(<Header selectedTeam={team} />);
-    expect(screen.getByText('iOS')).toBeInTheDocument();
+    // Platform and key appear in breadcrumb (may appear multiple times)
+    const iOSElements = screen.getAllByText('iOS');
+    expect(iOSElements.length).toBeGreaterThan(0);
     expect(screen.getByText('DISRUPT')).toBeInTheDocument();
   });
 
