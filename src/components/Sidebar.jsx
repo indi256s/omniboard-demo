@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { platforms, teams } from '../data/mockData';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const Logo = ({ collapsed }) => (
   <div className="flex items-center gap-3 px-4 py-5" style={{ borderBottom: '1px solid var(--border)' }}>
@@ -205,6 +206,11 @@ export default function Sidebar({
           ))}
         </div>
       )}
+      
+      {/* Theme Switcher - Bottom */}
+      <div className={`p-4 border-t border-zinc-800/50 mt-auto ${collapsed ? 'px-2' : ''}`}>
+        <ThemeSwitcher collapsed={collapsed} />
+      </div>
     </aside>
   );
 }

@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '../context/ThemeContext';
 import Alerts from '../pages/Alerts';
 
 // Mock navigate
@@ -16,9 +17,11 @@ vi.mock('react-router-dom', async () => {
 
 const renderAlerts = () => {
   return render(
-    <BrowserRouter>
-      <Alerts />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Alerts />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

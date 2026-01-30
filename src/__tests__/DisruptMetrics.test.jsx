@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { ThemeProvider } from '../context/ThemeContext';
 import DisruptMetrics from '../pages/DisruptMetrics';
 import T2MGauge from '../components/T2MGauge';
 import WaitTimeChart from '../components/WaitTimeChart';
@@ -9,11 +10,13 @@ import DisruptTrendChart from '../components/DisruptTrendChart';
 import SolutionsList from '../components/SolutionsList';
 import { disruptMetrics, solutionTypes } from '../data/disruptData';
 
-// Wrapper for components that need router context
+// Wrapper for components that need router and theme context
 const RouterWrapper = ({ children }) => (
-  <MemoryRouter initialEntries={['/disrupt_metrics']}>
-    {children}
-  </MemoryRouter>
+  <ThemeProvider>
+    <MemoryRouter initialEntries={['/disrupt_metrics']}>
+      {children}
+    </MemoryRouter>
+  </ThemeProvider>
 );
 
 describe('DisruptMetrics Page', () => {

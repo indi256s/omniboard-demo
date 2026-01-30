@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import { teams, platforms } from '../data/mockData';
+import { AllProviders } from './testUtils';
 
 const renderWithRouter = (ui) => {
-  return render(<BrowserRouter>{ui}</BrowserRouter>);
+  return render(ui, { wrapper: AllProviders });
 };
 
 describe('Sidebar Component', () => {

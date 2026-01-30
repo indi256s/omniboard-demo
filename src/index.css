@@ -20,20 +20,23 @@
 }
 
 :root[data-theme="light"] {
-  --bg-primary: #faf9f7;
-  --bg-secondary: #f5f4f1;
-  --bg-tertiary: #eeecea;
-  --border: rgba(0, 0, 0, 0.08);
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  --text-muted: #71717a;
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f3f4;
+  --border: rgba(0, 0, 0, 0.1);
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #6b7280;
   --accent-green: #059669;
   --accent-red: #dc2626;
-  --accent-yellow: #ca8a04;
+  --accent-yellow: #d97706;
   --accent-blue: #2563eb;
-  --accent-purple: #9333ea;
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.06);
+  --accent-purple: #7c3aed;
+  --accent-orange: #ea580c;
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --card-bg: #ffffff;
+  --hover-bg: rgba(0, 0, 0, 0.04);
 }
 
 * {
@@ -59,7 +62,79 @@ body {
 }
 
 :root[data-theme="light"] .glass {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02);
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Light theme Tailwind overrides */
+:root[data-theme="light"] .bg-zinc-800\/50,
+:root[data-theme="light"] .bg-zinc-800\/30 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+:root[data-theme="light"] .bg-zinc-900\/50 {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+:root[data-theme="light"] .border-zinc-800,
+:root[data-theme="light"] .border-zinc-800\/50,
+:root[data-theme="light"] .border-zinc-700 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+:root[data-theme="light"] .text-white {
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme="light"] .text-zinc-400,
+:root[data-theme="light"] .text-zinc-500 {
+  color: var(--text-secondary) !important;
+}
+
+:root[data-theme="light"] .text-zinc-600 {
+  color: var(--text-muted) !important;
+}
+
+:root[data-theme="light"] .hover\:text-white:hover {
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme="light"] .hover\:bg-zinc-800\/50:hover,
+:root[data-theme="light"] .hover\:bg-zinc-700:hover {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+:root[data-theme="light"] .bg-zinc-800 {
+  background-color: #e5e7eb !important;
+}
+
+:root[data-theme="light"] .placeholder-zinc-600::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Light theme input styling */
+:root[data-theme="light"] input {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme="light"] input:focus {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Light theme chart backgrounds */
+:root[data-theme="light"] .recharts-surface {
+  background: transparent;
+}
+
+/* Light theme tooltips */
+:root[data-theme="light"] .glass.rounded-lg.p-3 {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
 }
 
 .gradient-mesh {

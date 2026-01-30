@@ -1,15 +1,18 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '../context/ThemeContext';
 import Dashboard from '../pages/Dashboard';
 
 const renderDashboard = (initialRoute = '/team/DISRUPT') => {
   return render(
-    <MemoryRouter initialEntries={[initialRoute]}>
-      <Routes>
-        <Route path="/team/:teamKey" element={<Dashboard />} />
-      </Routes>
-    </MemoryRouter>
+    <ThemeProvider>
+      <MemoryRouter initialEntries={[initialRoute]}>
+        <Routes>
+          <Route path="/team/:teamKey" element={<Dashboard />} />
+        </Routes>
+      </MemoryRouter>
+    </ThemeProvider>
   );
 };
 
