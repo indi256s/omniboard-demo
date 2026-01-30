@@ -93,6 +93,6 @@ describe('Alerts Page', () => {
 
   it('renders footer with version info', () => {
     renderAlerts();
-    expect(screen.getByText(/ОМНИБОРД v2.0/)).toBeInTheDocument();
+    expect(screen.getByText(/PMO Омниборд v2.0/)).toBeInTheDocument();
   });
 });

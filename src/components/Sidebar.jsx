@@ -9,7 +9,7 @@ const Logo = ({ collapsed }) => (
     </div>
     {!collapsed && (
       <div className="overflow-hidden">
-        <div className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>ОМНИБОРД</div>
+        <div className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>PMO Омниборд</div>
         <div className="text-[10px] mono" style={{ color: 'var(--text-muted)' }}>Delivery Metrics</div>
       </div>
     )}

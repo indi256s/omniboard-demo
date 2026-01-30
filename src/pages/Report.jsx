@@ -338,7 +338,7 @@ export default function Report() {
 
         {/* Footer */}
         <footer className="mt-8 pt-6 border-t border-zinc-800/50 text-center text-xs text-zinc-600">
-          <span className="mono">ОМНИБОРД v2.0</span> • Report •
+          <span className="mono">PMO Омниборд v2.0</span> • Report •
           <span className="text-green-500 ml-1">● Live</span>
         </footer>
       </main>
