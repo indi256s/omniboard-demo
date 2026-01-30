@@ -7,6 +7,7 @@ import OwnershipRing from '../components/OwnershipRing';
 import DisruptTrendChart from '../components/DisruptTrendChart';
 import SolutionsList from '../components/SolutionsList';
 import { disruptMetrics } from '../data/disruptData';
+import InfoButton from '../components/InfoButton';
 
 export default function DisruptMetrics() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ export default function DisruptMetrics() {
           <div className="flex items-center gap-2 mb-4">
             <span className="text-amber-400">🎯</span>
             <h2 className="text-lg font-semibold">Time to Market</h2>
+            <InfoButton text="Время от идеи до продакшена (в днях). Включает: дизайн, разработку, тестирование и деплой. Чем меньше — тем быстрее команда доставляет ценность пользователям." />
             <span className="text-xs text-zinc-500 ml-2">Speed metric</span>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -131,6 +133,7 @@ export default function DisruptMetrics() {
             <div className="flex items-center gap-2 mb-4">
               <span className="text-cyan-400">🔗</span>
               <h2 className="text-lg font-semibold">Wait Time Ratio</h2>
+              <InfoButton text="Процент времени, когда работа заблокирована внешними зависимостями (другие команды, согласования, инфраструктура). Показывает автономность команды. Цель: минимизировать блокировки." />
               <span className="text-xs text-zinc-500 ml-2">Autonomy metric</span>
             </div>
             <div className="flex items-baseline gap-2 mb-4">
@@ -152,6 +155,7 @@ export default function DisruptMetrics() {
             <div className="flex items-center gap-2 mb-4">
               <span className="text-green-400">🛠</span>
               <h2 className="text-lg font-semibold">Solution Ownership Rate</h2>
+              <InfoButton text="Процент ограничений, для которых команда нашла техническую альтернативу вместо эскалации. Показывает гибкость и проактивность команды в решении проблем." />
               <span className="text-xs text-zinc-500 ml-2">Flexibility metric</span>
             </div>
             <div className="flex items-center gap-6">
@@ -182,6 +186,7 @@ export default function DisruptMetrics() {
           <div className="flex items-center gap-2 mb-4">
             <span className="text-blue-400">📈</span>
             <h2 className="text-lg font-semibold">6-Sprint Trend</h2>
+            <InfoButton text="Динамика всех трёх метрик за последние 6 спринтов. Позволяет отслеживать прогресс и выявлять тренды: улучшается ли скорость, автономность и гибкость команды." />
           </div>
           <DisruptTrendChart sprints={data.sprints} />
         </div>
