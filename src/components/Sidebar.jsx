@@ -3,14 +3,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { platforms, teams } from '../data/mockData';
 
 const Logo = ({ collapsed }) => (
-  <div className="flex items-center gap-3 px-4 py-5 border-b border-zinc-800/50">
+  <div className="flex items-center gap-3 px-4 py-5" style={{ borderBottom: '1px solid var(--border)' }}>
     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center shrink-0">
       <span className="text-white font-bold text-sm">О</span>
     </div>
     {!collapsed && (
       <div className="overflow-hidden">
-        <div className="font-semibold text-white text-sm">ОМНИБОРД</div>
-        <div className="text-[10px] text-zinc-500 mono">Delivery Metrics</div>
+        <div className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>ОМНИБОРД</div>
+        <div className="text-[10px] mono" style={{ color: 'var(--text-muted)' }}>Delivery Metrics</div>
       </div>
     )}
   </div>

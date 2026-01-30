@@ -132,7 +132,7 @@ export default function Dashboard() {
         </div>
 
         {/* Secondary Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-2 gap-4 mb-6">
           <StatCard
             title="Avg Cycle Time"
             value={`${avgCycleTime}d`}
@@ -146,26 +146,26 @@ export default function Dashboard() {
             subtitle={`${activeDshbData.current} / ${activeDshbData.target} багов`}
             color="purple"
           />
-          <StatCard
-            title={selectedTeam ? "Team" : "Active Teams"}
-            value={selectedTeam ? selectedTeam.name : teams.length}
-            subtitle={selectedTeam ? selectedTeam.platform : "активных"}
-            color="blue"
-          />
         </div>
 
-        {/* Charts Row 1 */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
+        {/* Velocity Chart - Full Width */}
+        <div className="mb-6">
           <VelocityChart data={activeVelocityData} />
+        </div>
+
+        {/* Cycle Time Chart - Full Width */}
+        <div className="mb-6">
           <CycleTimeChart data={activeCycleTimeData} />
         </div>
 
-        {/* Charts Row 2 */}
-        <div className="grid grid-cols-3 gap-6">
+        {/* ДШБ Widget - Full Width */}
+        <div className="mb-6">
           <DshbWidget data={activeDshbData} />
-          <div className="col-span-2">
-            <SummaryTable data={filteredSummaryData} />
-          </div>
+        </div>
+
+        {/* Summary Table - Full Width */}
+        <div className="mb-6">
+          <SummaryTable data={filteredSummaryData} />
         </div>
 
         {/* Footer */}
