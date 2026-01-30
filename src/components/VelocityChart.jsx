@@ -53,8 +53,10 @@ const CustomLabel = (props) => {
 };
 
 export default function VelocityChart({ data }) {
-  const maxPlanned = Math.max(...data.map(d => d.planned));
-  const yMax = Math.ceil(maxPlanned * 1.15);
+  // Calculate 60% target line based on average planned SP of last 3 sprints
+  const lastThreePlanned = data.slice(-3).map(d => d.planned);
+  const avgPlanned = lastThreePlanned.reduce((a, b) => a + b, 0) / lastThreePlanned.length;
+  const targetLine = avgPlanned * 0.6;
 
   return (
     <div className="glass rounded-xl p-5 animate-in delay-1">
@@ -76,11 +78,6 @@ export default function VelocityChart({ data }) {
       </div>
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data} barGap={4}>
-          {/* Background zones */}
-          <ReferenceArea y1={0} y2={50} fill="#ef4444" fillOpacity={0.05} />
-          <ReferenceArea y1={50} y2={60} fill="#eab308" fillOpacity={0.08} />
-          <ReferenceArea y1={60} y2={100} fill="#10b981" fillOpacity={0.06} />
-          
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
           <XAxis 
             dataKey="sprint" 
@@ -92,20 +89,21 @@ export default function VelocityChart({ data }) {
             tick={{ fill: '#71717a', fontSize: 12 }} 
             axisLine={false} 
             tickLine={false}
-            domain={[0, 100]}
+            label={{ value: 'Story Points', angle: -90, position: 'insideLeft', fill: '#71717a', fontSize: 11 }}
           />
           <Tooltip content={<CustomTooltip />} />
           
-          {/* Bold target line */}
+          {/* Target line at 60% of avg planned (last 3 sprints) */}
           <ReferenceLine 
-            y={60} 
+            y={targetLine} 
             stroke="#eab308" 
             strokeWidth={2}
+            strokeDasharray="3 3"
             label={{ 
-              value: 'TARGET', 
+              value: `Target 60% (${Math.round(targetLine)} SP)`, 
               fill: '#eab308', 
               fontSize: 10,
-              fontWeight: 700,
+              fontWeight: 600,
               position: 'insideTopRight'
             }} 
           />
