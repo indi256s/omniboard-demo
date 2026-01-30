@@ -28,6 +28,7 @@ export default function Sidebar({
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const isAlertsPage = location.pathname === '/alerts';
+  const isReportPage = location.pathname === '/report';
   
   const filteredTeams = teams
     .filter(t => selectedPlatform === 'Все' || t.platform === selectedPlatform)
@@ -63,18 +64,32 @@ export default function Sidebar({
       
       {/* Navigation */}
       <div className={`p-4 border-b border-zinc-800/50 ${collapsed ? 'px-2' : ''}`}>
-        <button
-          onClick={() => navigate('/alerts')}
-          className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${
-            isAlertsPage
-              ? 'bg-red-500/10 text-red-400 border-l-2 border-red-500'
-              : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-          } ${collapsed ? 'justify-center px-2' : ''}`}
-          title="Алерты"
-        >
-          <span>🚨</span>
-          {!collapsed && <span>Алерты</span>}
-        </button>
+        <div className="space-y-1">
+          <button
+            onClick={() => navigate('/alerts')}
+            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${
+              isAlertsPage
+                ? 'bg-red-500/10 text-red-400 border-l-2 border-red-500'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+            } ${collapsed ? 'justify-center px-2' : ''}`}
+            title="Алерты"
+          >
+            <span>🚨</span>
+            {!collapsed && <span>Алерты</span>}
+          </button>
+          <button
+            onClick={() => navigate('/report')}
+            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${
+              isReportPage
+                ? 'bg-blue-500/10 text-blue-400 border-l-2 border-blue-500'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+            } ${collapsed ? 'justify-center px-2' : ''}`}
+            title="Отчёт"
+          >
+            <span>📊</span>
+            {!collapsed && <span>Отчёт</span>}
+          </button>
+        </div>
       </div>
 
       {!collapsed && (
