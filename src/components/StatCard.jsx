@@ -1,4 +1,5 @@
 import { getStatusColor, getStatusLabel } from '../data/mockData';
+import InfoButton from './InfoButton';
 
 export default function StatCard({ 
   title, 
@@ -7,6 +8,7 @@ export default function StatCard({
   trend, 
   status,
   alert,
+  info,
   color = 'green',
   size = 'normal'
 }) {
@@ -26,8 +28,9 @@ export default function StatCard({
       <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent ${colorClasses[color]} to-transparent opacity-50`}></div>
       
       <div className="flex items-start justify-between mb-3">
-        <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+        <div className="flex items-center text-xs font-medium text-zinc-500 uppercase tracking-wider">
           {title}
+          {info && <InfoButton text={info} />}
         </div>
         {status && (
           <span className={`px-2 py-1 rounded text-[10px] font-medium border ${getStatusColor(status)}`}>

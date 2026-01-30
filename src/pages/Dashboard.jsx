@@ -126,6 +126,7 @@ export default function Dashboard() {
                 ? 'Velocity below target. Review sprint planning.'
                 : undefined
             }
+            info="Процент выполненных Story Points к запланированным за спринт. Показывает предсказуемость команды. Цель: стабильно выше 60%."
             color="green"
             size="hero"
           />
@@ -138,12 +139,14 @@ export default function Dashboard() {
             value={`${avgCycleTime}д`}
             subtitle={`Median: ${medianCycleTime}д`}
             trend={cycleTimeTrend}
+            info="Среднее время от начала работы над задачей до её завершения (в днях). Меньше = быстрее доставка ценности."
             color="blue"
           />
           <StatCard
             title="ДШБ Progress"
             value={`${activeDshbData.progressPct}%`}
             subtitle={`${activeDshbData.current} / ${activeDshbData.target} багов`}
+            info="Прогресс по устранению технического долга (багов). Дедлайн Шредингера Багов — цель довести количество открытых багов до 0."
             color="purple"
           />
         </div>
