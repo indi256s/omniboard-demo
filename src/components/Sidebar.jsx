@@ -42,7 +42,7 @@ export default function Sidebar({
 
   return (
     <aside 
-      className={`h-screen glass fixed left-0 top-0 flex flex-col transition-all duration-300 z-50 ${
+      className={`h-screen glass fixed left-0 top-0 flex flex-col transition-all duration-300 z-50 overflow-visible ${
         collapsed ? 'w-16' : 'w-64'
       }`}
     >
@@ -51,7 +51,8 @@ export default function Sidebar({
       {/* Collapse Toggle */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="absolute -right-3 top-6 w-6 h-6 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-zinc-700 transition-colors"
+        className="absolute -right-3 top-6 w-6 h-6 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-zinc-700 transition-colors z-50"
+        style={{ zIndex: 60 }}
         title={collapsed ? 'Expand' : 'Collapse'}
       >
         <svg 

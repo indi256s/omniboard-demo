@@ -300,6 +300,17 @@ body {
   color: var(--text-secondary) !important;
 }
 
+/* Sidebar collapse button - light theme */
+:root[data-theme="light"] aside button.rounded-full.bg-zinc-800 {
+  background-color: #ffffff !important;
+  border-color: rgba(120, 100, 80, 0.2) !important;
+  box-shadow: 0 2px 4px rgba(120, 100, 80, 0.1) !important;
+}
+
+:root[data-theme="light"] aside button.rounded-full.bg-zinc-800:hover {
+  background-color: #f5f3f0 !important;
+}
+
 .gradient-mesh {
   background: 
     radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.02) 0px, transparent 50%),
