@@ -28,7 +28,7 @@ export const disruptMetrics = {
       { team: 'Backend', pct: 8, hours: 24, color: '#ef4444' },
       { team: 'Design', pct: 5, hours: 15, color: '#f97316' },
       { team: 'DevOps', pct: 3, hours: 9, color: '#eab308' },
-      { team: 'Legal', pct: 2, hours: 6, color: '#a855f7' }
+      { team: 'Legal', pct: 2, hours: 6, color: '#8b5cf6' }
     ]
   },
   

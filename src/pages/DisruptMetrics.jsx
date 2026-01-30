@@ -37,7 +37,7 @@ export default function DisruptMetrics() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold tracking-tight">
-                <span className="text-purple-400">⚡</span> Disrupt Metrics
+                <span className="text-orange-400">⚡</span> Disrupt Metrics
               </h1>
               <p className="text-zinc-500 mt-1">
                 Speed • Autonomy • Flexibility — {data.period}
@@ -45,7 +45,7 @@ export default function DisruptMetrics() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xs text-zinc-500">Team</span>
-              <span className="px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-400 text-sm font-medium border border-purple-500/20">
+              <span className="px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-400 text-sm font-medium border border-orange-500/20">
                 {data.teamName}
               </span>
             </div>
@@ -173,7 +173,7 @@ export default function DisruptMetrics() {
         {/* Solutions List */}
         <div className="glass rounded-xl p-6 animate-in delay-4">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-purple-400">💡</span>
+            <span className="text-orange-400">💡</span>
             <h2 className="text-lg font-semibold">Recent Solutions</h2>
             <span className="text-xs text-zinc-500 ml-2">Ownership examples this sprint</span>
           </div>
@@ -183,7 +183,7 @@ export default function DisruptMetrics() {
         {/* Footer */}
         <footer className="mt-8 pt-6 border-t border-zinc-800/50 text-center text-xs text-zinc-600">
           <span className="mono">PMO Омниборд v2.0</span> • Disrupt Metrics •
-          <span className="text-purple-500 ml-1">● Live</span>
+          <span className="text-orange-500 ml-1">● Live</span>
         </footer>
       </main>
     </div>

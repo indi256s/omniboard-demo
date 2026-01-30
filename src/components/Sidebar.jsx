@@ -94,7 +94,7 @@ export default function Sidebar({
             onClick={() => navigate('/disrupt_metrics')}
             className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${
               isDisruptPage
-                ? 'bg-purple-500/10 text-purple-400 border-l-2 border-purple-500'
+                ? 'bg-orange-500/10 text-orange-400 border-l-2 border-orange-500'
                 : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
             } ${collapsed ? 'justify-center px-2' : ''}`}
             title="Disrupt Metrics"
