@@ -16,7 +16,7 @@ export default function DshbWidget({ data }) {
             ? 'bg-green-500/10 text-green-400 border-green-500/20' 
             : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
         }`}>
-          {progress >= 50 ? 'On Track' : 'At Risk'}
+          {progress >= 50 ? 'В графике' : 'Риск'}
         </div>
       </div>
       
@@ -26,22 +26,22 @@ export default function DshbWidget({ data }) {
         <div className="flex gap-8">
           <div>
             <div className="text-3xl font-bold mono text-zinc-400 mb-1">{data.baseline}</div>
-            <div className="text-xs text-zinc-600 font-light">Baseline</div>
+            <div className="text-xs text-zinc-600 font-light">Базовая</div>
           </div>
           <div>
             <div className="text-3xl font-bold mono text-blue-400 mb-1">{data.current}</div>
-            <div className="text-xs text-zinc-600 font-light">Current</div>
+            <div className="text-xs text-zinc-600 font-light">Текущая</div>
           </div>
           <div>
             <div className="text-3xl font-bold mono text-green-400 mb-1">{data.target}</div>
-            <div className="text-xs text-zinc-600 font-light">Target</div>
+            <div className="text-xs text-zinc-600 font-light">Цель</div>
           </div>
         </div>
         
         {/* Progress Bar */}
         <div>
           <div className="flex justify-between text-xs text-zinc-500 mb-2 font-light">
-            <span>Progress</span>
+            <span>Прогресс</span>
             <span className="mono">{progress.toFixed(1)}%</span>
           </div>
           <div className="h-3 bg-zinc-800/50 rounded-full overflow-hidden">

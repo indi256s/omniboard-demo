@@ -116,14 +116,14 @@ export default function Dashboard() {
         {/* Hero Stat */}
         <div className="mb-6">
           <StatCard
-            title={`Average Velocity${selectedTeam ? '' : ' (Median)'}`}
+            title={`Средняя скорость${selectedTeam ? '' : ' (Медиана)'}`}
             value={`${avgVelocity}%`}
-            subtitle={`Target: 60% • Last Sprint: ${currentVelocity}%`}
+            subtitle={`Цель: 60% • Последний спринт: ${currentVelocity}%`}
             trend={velocityTrend}
             status={velocityStatus}
             alert={
               avgVelocity < 60
-                ? 'Velocity below target. Review sprint planning.'
+                ? 'Скорость ниже цели. Проверьте планирование спринта.'
                 : undefined
             }
             color="green"
@@ -134,14 +134,14 @@ export default function Dashboard() {
         {/* Secondary Stats */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           <StatCard
-            title="Avg Cycle Time"
-            value={`${avgCycleTime}d`}
-            subtitle={`Median: ${medianCycleTime}d`}
+            title="Среднее время цикла"
+            value={`${avgCycleTime}д`}
+            subtitle={`Медиана: ${medianCycleTime}д`}
             trend={cycleTimeTrend}
             color="blue"
           />
           <StatCard
-            title="ДШБ Progress"
+            title="Прогресс ДШБ"
             value={`${activeDshbData.progressPct}%`}
             subtitle={`${activeDshbData.current} / ${activeDshbData.target} багов`}
             color="purple"
